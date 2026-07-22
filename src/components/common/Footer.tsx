@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaWhatsapp, FaArrowUp, FaEnvelope } from 'react-icons/fa';
 import axios from 'axios';
@@ -101,6 +102,11 @@ export default function Footer() {
                 <a href="#projects" className="text-text-secondary transition-colors hover:text-white">
                   Projects
                 </a>
+              </li>
+              <li>
+                <Link to="/admin/login" className="text-accent-cyan/80 transition-colors hover:text-accent-cyan">
+                  Admin Portal
+                </Link>
               </li>
             </ul>
           </div>
