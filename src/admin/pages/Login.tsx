@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import api from '../services/api';
 
 const loginSchema = z.object({
   username: z.string().email('Please enter a valid email address'),
@@ -27,7 +27,7 @@ export default function Login() {
     setIsLoading(true);
     setErrorMsg('');
     try {
-      const response = await axios.post('/api/auth/login', data);
+      const response = await api.post('/auth/login', data);
       if (response.data && response.data.success) {
         login(response.data.token, response.data.admin);
         navigate('/admin');
@@ -62,43 +62,43 @@ export default function Login() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-white/60 mb-2">
+            <label className="block text-xs font-medium text-text-secondary mb-2 uppercase tracking-wider">
               Email Address
             </label>
             <input
               type="email"
               {...register('username')}
-              className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
-              placeholder="Enter email address"
+              placeholder="admin@example.com"
+              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/30 focus:border-accent-cyan focus:outline-none transition"
             />
             {errors.username && (
-              <p className="text-red-400 text-xs mt-1">{errors.username.message}</p>
+              <p className="mt-1.5 text-xs text-red-400">{errors.username.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-white/60 mb-2">
+            <label className="block text-xs font-medium text-text-secondary mb-2 uppercase tracking-wider">
               Password
             </label>
             <input
               type="password"
               {...register('password')}
-              className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
               placeholder="••••••••"
+              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/30 focus:border-accent-cyan focus:outline-none transition"
             />
             {errors.password && (
-              <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>
+              <p className="mt-1.5 text-xs text-red-400">{errors.password.message}</p>
             )}
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold tracking-wider uppercase text-sm shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 disabled:pointer-events-none"
+            className="w-full mt-4 rounded-xl bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:opacity-90 disabled:opacity-50 cursor-pointer"
           >
-            {isLoading ? 'Verifying Session...' : 'Sign In'}
+            {isLoading ? 'Authenticating...' : 'Sign In To Dashboard'}
           </button>
         </form>
       </div>
