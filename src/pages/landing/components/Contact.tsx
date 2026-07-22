@@ -32,7 +32,7 @@ export default function Contact() {
     setStatus('loading');
 
     try {
-      const apiBase = import.meta.env.VITE_API_URL || '';
+      const apiBase = import.meta.env.VITE_API_URL || 'https://final-portfolio-backend-ten.vercel.app';
       const response = await fetch(`${apiBase}/api/contact`, {
         method: 'POST',
         headers: {
