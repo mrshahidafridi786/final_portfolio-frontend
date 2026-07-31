@@ -58,7 +58,8 @@ export default function Navbar() {
     // Load logo profile photo from backend API
     const fetchLogo = async () => {
       try {
-        const response = await fetch('/api/hero');
+        const apiBase = import.meta.env.VITE_API_URL || 'https://final-portfolio-backend-yjep.vercel.app';
+        const response = await fetch(`${apiBase}/api/hero`);
         if (response.ok) {
           const data = await response.json();
           if (data && data.profileImage) {
@@ -139,7 +140,7 @@ export default function Navbar() {
 
       <motion.header
         className={`fixed left-0 right-0 top-0 z-[50] transition-all duration-500 ease-out ${
-          isScrolled ? 'top-3 px-4 md:px-8' : 'top-0 px-0'
+          isScrolled ? 'top-3 px-3 sm:px-4 md:px-8' : 'top-0 px-0'
         }`}
         variants={navContainerVariants}
         initial="hidden"
@@ -148,26 +149,26 @@ export default function Navbar() {
         <div
           className={`mx-auto flex max-w-7xl items-center justify-between transition-all duration-500 ease-out ${
             isScrolled
-              ? 'bg-[#050816]/75 backdrop-blur-2xl rounded-full px-8 py-3 border border-white/[0.08] shadow-[0_12px_40px_-10px_rgba(0,0,0,0.5)]'
-              : 'bg-transparent px-6 py-6 border-b border-white/[0.05]'
+              ? 'bg-[#050816]/85 backdrop-blur-2xl rounded-full px-4 sm:px-8 py-2.5 sm:py-3 border border-white/[0.08] shadow-[0_12px_40px_-10px_rgba(0,0,0,0.5)]'
+              : 'bg-transparent px-4 sm:px-6 py-4 sm:py-6 border-b border-white/[0.05]'
           }`}
         >
           {/* Logo Brand with custom Scale, Rotation & Glow */}
           <motion.a
             href="#home"
             onClick={(e) => handleLinkClick(e, 'home')}
-            className="flex items-center space-x-2.5 group cursor-pointer"
+            className="flex items-center space-x-2 sm:space-x-2.5 group cursor-pointer flex-shrink-0"
             variants={navItemVariants}
             whileHover={{ scale: 1.03 }}
           >
-            <div className="relative h-9 w-9 rounded-full overflow-hidden border border-white/20 bg-white/5 shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.8)] transition-all duration-300">
+            <div className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full overflow-hidden border border-white/20 bg-white/5 shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.8)] transition-all duration-300 flex-shrink-0">
               <img 
                 src={logoImage || shahidSuit} 
                 alt="Shahid Afridi Logo" 
                 className="h-full w-full object-cover"
               />
             </div>
-            <span className="font-sans text-xs font-black tracking-widest text-white group-hover:text-accent-blue transition-colors duration-300 uppercase inline-block">
+            <span className="font-sans text-[11px] sm:text-xs font-black tracking-wider text-white group-hover:text-accent-blue transition-colors duration-300 uppercase whitespace-nowrap block">
               Shahid Afridi
             </span>
           </motion.a>
