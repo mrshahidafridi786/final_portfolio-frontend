@@ -150,19 +150,19 @@ export default function Navbar() {
         initial="hidden"
         animate="visible"
       >
-        <div
+        <motion.div
           className={`mx-auto flex max-w-7xl items-center justify-between transition-all duration-500 ease-out ${
             isScrolled
               ? 'bg-[#050816]/85 backdrop-blur-2xl rounded-full px-4 sm:px-8 py-2.5 sm:py-3 border border-white/[0.08] shadow-[0_12px_40px_-10px_rgba(0,0,0,0.5)]'
               : 'bg-transparent px-4 sm:px-6 py-4 sm:py-6 border-b border-white/[0.05]'
           }`}
+          variants={navContainerVariants}
         >
           {/* Logo Brand with custom Scale, Rotation & Glow */}
           <motion.a
             href="#home"
             onClick={(e) => handleLinkClick(e, 'home')}
             className="flex items-center space-x-2 sm:space-x-2.5 group cursor-pointer flex-shrink-0"
-            variants={navItemVariants}
             whileHover={{ scale: 1.03 }}
           >
             <div className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full overflow-hidden border border-white/20 bg-white/5 shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.8)] transition-all duration-300 flex-shrink-0">
@@ -263,7 +263,7 @@ export default function Navbar() {
               transition={{ duration: 0.25 }}
             />
           </motion.button>
-        </div>
+        </motion.div>
       </motion.header>
 
       {/* Mobile Drawer Overlay - Slide in from right with backdrop blur */}
