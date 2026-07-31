@@ -64,8 +64,10 @@ export default function Navbar() {
         if (response.ok) {
           const data = await response.json();
           if (data) {
-            if (data.profileImage) setLogoImage(data.profileImage);
-            if (data.name) setBrandName(data.name);
+            if (data.profileImage && data.profileImage.trim()) setLogoImage(data.profileImage.trim());
+            if (data.name && typeof data.name === 'string' && data.name.trim().length > 0) {
+              setBrandName(data.name.trim());
+            }
           }
         }
       } catch (err) {
@@ -166,15 +168,15 @@ export default function Navbar() {
             <div className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full overflow-hidden border border-white/20 bg-white/5 shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.8)] transition-all duration-300 flex-shrink-0">
               <img 
                 src={logoImage || shahidSuit} 
-                alt={`${brandName} Logo`}
+                alt="Shahid Afridi Logo"
                 className="h-full w-full object-cover"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = shahidSuit;
                 }}
               />
             </div>
-            <span className="font-sans text-xs sm:text-sm font-black tracking-wider text-white group-hover:text-accent-cyan transition-colors duration-300 uppercase whitespace-nowrap block">
-              {brandName || 'Shahid Afridi'}
+            <span className="font-sans text-xs sm:text-sm font-extrabold tracking-wider text-white group-hover:text-accent-cyan transition-colors duration-300 uppercase whitespace-nowrap inline-block">
+              {brandName && brandName.trim() ? brandName : 'Shahid Afridi'}
             </span>
           </motion.a>
 
