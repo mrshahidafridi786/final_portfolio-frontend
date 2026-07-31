@@ -146,8 +146,8 @@ export default function Navbar() {
                 }}
               />
             </div>
-            <span className="font-sans text-xs sm:text-sm font-black tracking-wider text-white group-hover:text-accent-cyan transition-colors duration-300 uppercase whitespace-nowrap block">
-              {brandName || 'Shahid Afridi'}
+            <span className="font-sans text-[13px] sm:text-sm font-extrabold tracking-wider text-white group-hover:text-accent-cyan transition-colors duration-300 uppercase whitespace-nowrap inline-block">
+              Shahid Afridi
             </span>
           </a>
 
