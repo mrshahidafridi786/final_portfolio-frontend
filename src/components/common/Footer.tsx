@@ -26,7 +26,8 @@ export default function Footer() {
   useEffect(() => {
     const loadSettings = async () => {
       try {
-        const response = await axios.get('/api/settings');
+        const apiBase = import.meta.env.VITE_API_URL || 'https://final-portfolio-backend-yjep.vercel.app';
+        const response = await axios.get(`${apiBase}/api/settings`);
         if (response.data) {
           setSettings(response.data);
         }
@@ -37,7 +38,8 @@ export default function Footer() {
 
     const fetchLogo = async () => {
       try {
-        const response = await axios.get('/api/hero');
+        const apiBase = import.meta.env.VITE_API_URL || 'https://final-portfolio-backend-yjep.vercel.app';
+        const response = await axios.get(`${apiBase}/api/hero`);
         if (response.data && response.data.profileImage) {
           setLogoImage(response.data.profileImage);
         }
@@ -66,6 +68,9 @@ export default function Footer() {
                   src={logoImage || shahidSuit}
                   alt="Shahid Afridi"
                   className="h-full w-full object-cover"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = shahidSuit;
+                  }}
                 />
               </div>
               <span className="font-sans text-xl font-bold tracking-wider text-white uppercase">

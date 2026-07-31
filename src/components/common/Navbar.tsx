@@ -16,6 +16,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoImage, setLogoImage] = useState('');
+  const [brandName, setBrandName] = useState('Shahid Afridi');
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   // 1. Intersection Observer for active section detection
@@ -62,8 +63,9 @@ export default function Navbar() {
         const response = await fetch(`${apiBase}/api/hero`);
         if (response.ok) {
           const data = await response.json();
-          if (data && data.profileImage) {
-            setLogoImage(data.profileImage);
+          if (data) {
+            if (data.profileImage) setLogoImage(data.profileImage);
+            if (data.name) setBrandName(data.name);
           }
         }
       } catch (err) {
@@ -164,12 +166,15 @@ export default function Navbar() {
             <div className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-full overflow-hidden border border-white/20 bg-white/5 shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.8)] transition-all duration-300 flex-shrink-0">
               <img 
                 src={logoImage || shahidSuit} 
-                alt="Shahid Afridi Logo" 
+                alt={`${brandName} Logo`}
                 className="h-full w-full object-cover"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = shahidSuit;
+                }}
               />
             </div>
             <span className="font-sans text-xs sm:text-sm font-black tracking-wider text-white group-hover:text-accent-cyan transition-colors duration-300 uppercase whitespace-nowrap block">
-              Shahid Afridi
+              {brandName || 'Shahid Afridi'}
             </span>
           </motion.a>
 
