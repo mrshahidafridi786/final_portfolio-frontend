@@ -168,7 +168,7 @@ export default function Navbar() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <span className="font-sans text-[11px] sm:text-xs font-black tracking-wider text-white group-hover:text-accent-blue transition-colors duration-300 uppercase whitespace-nowrap block">
+            <span className="font-sans text-xs sm:text-sm font-black tracking-wider text-white group-hover:text-accent-cyan transition-colors duration-300 uppercase whitespace-nowrap block">
               Shahid Afridi
             </span>
           </motion.a>
