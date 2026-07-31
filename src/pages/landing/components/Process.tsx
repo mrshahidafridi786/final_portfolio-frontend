@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  FaSearchMinus, FaCalendarAlt, FaPalette, FaTerminal, FaVial, FaCloudUploadAlt, FaWrench 
+  FaSearchMinus, FaCalendarAlt, FaPalette, FaTerminal, FaVial, FaCloudUploadAlt, FaWrench, FaChevronDown 
 } from 'react-icons/fa';
 
 const processSteps = [
@@ -74,9 +74,32 @@ export default function Process() {
         </div>
 
         {/* Timeline body wrapper */}
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 items-center">
-          {/* Steps selector menu */}
-          <div className="lg:col-span-1 space-y-3">
+        <div className="grid grid-cols-1 gap-8 lg:gap-12 lg:grid-cols-3 items-center">
+          {/* Mobile Dropdown Selector */}
+          <div className="block lg:hidden space-y-2">
+            <label className="block font-sans text-xs font-bold uppercase tracking-wider text-accent-cyan">
+              Select Process Phase:
+            </label>
+            <div className="relative">
+              <select
+                value={activeStep}
+                onChange={(e) => setActiveStep(Number(e.target.value))}
+                className="w-full rounded-2xl bg-[#0b1120] border border-white/20 p-4 font-sans text-sm font-bold text-white outline-none focus:border-accent-cyan shadow-glass-sm appearance-none cursor-pointer pr-10"
+              >
+                {processSteps.map((step, idx) => (
+                  <option key={idx} value={idx} className="bg-[#050816] text-white py-2">
+                    Phase {step.phase}: {step.title}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-accent-cyan">
+                <FaChevronDown size={14} />
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Steps selector menu */}
+          <div className="hidden lg:block lg:col-span-1 space-y-3">
             {processSteps.map((step, idx) => {
               const Icon = step.icon;
               const isActive = activeStep === idx;
