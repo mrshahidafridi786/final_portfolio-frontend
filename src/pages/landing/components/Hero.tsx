@@ -15,12 +15,12 @@ const iconMap: Record<string, any> = {
 export default function Hero() {
   const [data, setData] = useState({
     name: 'Shahid Afridi',
-    title: 'MERN Stack & React Native Developer',
-    subtitle: 'I build high-end web applications, cross-platform React Native apps, real-time analytics dashboards, and premium user interfaces that turn visitors into paying clients.',
+    title: 'MERN Stack Web Developer',
+    subtitle: 'I build high-end web applications, scalable MERN architectures, real-time analytics dashboards, and premium user interfaces that turn visitors into paying clients.',
     profileImage: '',
     ctaButtons: [
       { label: 'Hire Me', action: '#contact', primary: true },
-      { label: 'Download CV', action: '#about', primary: false }
+      { label: 'Download CV', action: '/Shahid_Afridi_CV.pdf', primary: false }
     ],
     socialLinks: [
       { platform: 'github', url: 'https://github.com/mrshahidafridi786' },
@@ -51,11 +51,21 @@ export default function Hero() {
     }
   };
 
-  const handleCtaClick = (action: string) => {
-    if (action.startsWith('#')) {
-      handleScrollTo(action.substring(1));
+  const handleCtaClick = (btn: { label: string; action: string }) => {
+    const isCv = btn.label.toLowerCase().includes('cv') || btn.label.toLowerCase().includes('resume') || btn.action.endsWith('.pdf');
+    if (isCv) {
+      const cvUrl = (btn.action.startsWith('#') || !btn.action) ? '/Shahid_Afridi_CV.pdf' : btn.action;
+      const link = document.createElement('a');
+      link.href = cvUrl;
+      link.setAttribute('download', 'Shahid_Afridi_CV.pdf');
+      link.setAttribute('target', '_blank');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else if (btn.action.startsWith('#')) {
+      handleScrollTo(btn.action.substring(1));
     } else {
-      window.open(action, '_blank', 'noopener,noreferrer');
+      window.open(btn.action, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -140,7 +150,7 @@ export default function Hero() {
             {data.ctaButtons.map((btn, index) => (
               <button
                 key={index}
-                onClick={() => handleCtaClick(btn.action)}
+                onClick={() => handleCtaClick(btn)}
                 className={btn.primary 
                   ? "rounded-full bg-gradient-to-r from-accent-blue to-accent-purple px-8 py-3.5 text-sm font-bold tracking-wider uppercase text-white shadow-glow-blue transition-transform hover:scale-105"
                   : "rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-8 py-3.5 text-sm font-bold tracking-wider uppercase text-white transition-all hover:bg-white/10 hover:border-white/30"

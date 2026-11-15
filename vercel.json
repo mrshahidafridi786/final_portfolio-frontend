@@ -6,7 +6,7 @@
       "destination": "https://final-portfolio-backend-yjep.vercel.app/api/$1"
     },
     {
-      "source": "/((?!api/).*)",
+      "source": "/((?!api/|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]

@@ -216,7 +216,7 @@ export default function SkillsEditor() {
                   type="text"
                   {...register('name')}
                   className="w-full px-3 py-2 rounded-lg border border-white/10 bg-white/5 text-white text-sm focus:outline-none focus:border-accent-cyan"
-                  placeholder="e.g. React Native"
+                  placeholder="e.g. React.js"
                   required
                 />
               </div>
@@ -255,7 +255,7 @@ export default function SkillsEditor() {
                   type="text"
                   {...register('iconName')}
                   className="w-full px-3 py-2 rounded-lg border border-white/10 bg-white/5 text-white text-sm focus:outline-none focus:border-accent-cyan font-mono"
-                  placeholder="e.g. TbBrandReactNative"
+                  placeholder="e.g. FaReact"
                   required
                 />
                 <p className="text-[10px] text-white/40 mt-1">Accepts standard Lucide, FontAwesome, or Feather mapped strings.</p>

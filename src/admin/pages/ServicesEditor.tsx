@@ -186,7 +186,7 @@ export default function ServicesEditor() {
                   type="text"
                   {...register('icon')}
                   className="w-full px-3 py-2 rounded-lg border border-white/10 bg-white/5 text-white text-sm focus:outline-none focus:border-accent-cyan font-mono"
-                  placeholder="e.g. FaCode or FaMobileAlt"
+                  placeholder="e.g. FaCode or FaServer"
                   required
                 />
               </div>

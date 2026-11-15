@@ -166,7 +166,7 @@ export default function HeroEditor() {
                   type="text"
                   {...register('title')}
                   className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
-                  placeholder="e.g. MERN Stack & React Native Developer"
+                  placeholder="e.g. MERN Stack Web Developer"
                 />
               </div>
             </div>

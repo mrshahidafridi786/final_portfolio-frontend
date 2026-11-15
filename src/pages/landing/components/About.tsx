@@ -12,7 +12,7 @@ import shahidClose from "../../../assets/shahid_close.jpg";
 export default function About() {
   const [aboutData, setAboutData] = useState({
     description:
-      "Passionate MERN Stack Developer with expertise in building modern, responsive, and scalable web applications using MongoDB, Express.js, React.js, and Node.js. Experienced in developing clean, user-focused web solutions with practical knowledge of Mobile App Development. Dedicated to writing efficient, maintainable code and continuously learning emerging technologies to deliver high-quality digital products.",
+      "Passionate MERN Stack Developer with expertise in building modern, responsive, and scalable web applications using MongoDB, Express.js, React.js, and Node.js. Experienced in developing clean, user-focused web solutions with practical knowledge of Full-Stack Architecture. Dedicated to writing efficient, maintainable code and continuously learning emerging technologies to deliver high-quality digital products.",
     profileImage: "",
     statistics: [
       { label: "Years Learning & Coding", value: "1+" },
@@ -52,7 +52,7 @@ export default function About() {
     },
   ]);
 
-  const [resumeUrl, setResumeUrl] = useState("");
+  const [resumeUrl, setResumeUrl] = useState("/Shahid_Afridi_CV.pdf");
 
   useEffect(() => {
     const loadAboutData = async () => {
@@ -78,13 +78,14 @@ export default function About() {
   }, []);
 
   const handleResumeDownload = () => {
-    if (resumeUrl) {
-      window.open(resumeUrl, "_blank");
-    } else {
-      alert(
-        "CV Document Integration: The CV download button triggers successfully! Once you upload your CV in the admin panel, it will download automatically.",
-      );
-    }
+    const targetUrl = resumeUrl || "/Shahid_Afridi_CV.pdf";
+    const link = document.createElement("a");
+    link.href = targetUrl;
+    link.setAttribute("download", "Shahid_Afridi_CV.pdf");
+    link.setAttribute("target", "_blank");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -136,7 +137,7 @@ export default function About() {
                 <span>My Mission Statement</span>
               </h5>
               <p className="font-sans text-[11px] italic text-text-secondary leading-relaxed">
-                "To deliver fast, clean, and highly secure MERN & mobile
+                "To deliver fast, clean, and highly secure MERN web
                 applications that optimize workflows, scale seamlessly under
                 heavy concurrent loads, and drive client revenue."
               </p>
@@ -236,30 +237,6 @@ export default function About() {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Custom Resume / CV Dedicated Section */}
-        <div className="glassmorphism rounded-3xl p-8 border border-white/10 bg-gradient-to-r from-[#0B1120] to-[#050816] flex flex-col md:flex-row items-center justify-between gap-6 shadow-glass-md hover:border-white/20 transition-all">
-          <div className="space-y-2">
-            <h4 className="font-sans text-2xl font-extrabold text-white">
-              Curriculum Vitae (CV) Section
-            </h4>
-            <p className="font-sans text-sm text-text-secondary max-w-xl">
-              My comprehensive resume details academic training at the
-              Agriculture University Peshawar, detailed stack proficiencies,
-              completed projects registry, and engineering methodologies.
-              Download the PDF for offline review.
-            </p>
-          </div>
-          <motion.button
-            onClick={handleResumeDownload}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 rounded-full bg-gradient-to-r from-accent-blue to-accent-cyan hover:shadow-glow-blue px-6 py-3.5 font-sans font-bold text-sm tracking-wider uppercase text-white transition-all transform hover:scale-105"
-          >
-            <FaDownload />
-            <span>Download Resume PDF</span>
-          </motion.button>
         </div>
       </div>
     </section>

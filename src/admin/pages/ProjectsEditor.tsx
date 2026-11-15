@@ -257,7 +257,7 @@ export default function ProjectsEditor() {
                   value={techInput}
                   onChange={(e) => setTechInput(e.target.value)}
                   className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-white focus:outline-none focus:border-accent-cyan text-sm flex-1"
-                  placeholder="Add technology tag, e.g. React Native"
+                  placeholder="Add technology tag, e.g. React.js"
                   onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddTech(); } }}
                 />
                 <button type="button" onClick={handleAddTech} className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-sm font-semibold">Add</button>

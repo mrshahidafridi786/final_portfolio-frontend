@@ -5,10 +5,9 @@ import {
 } from 'react-icons/fa';
 import { 
   SiTypescript, SiTailwindcss, SiExpress, SiMongodb, 
-  SiPostgresql, SiRedis, SiVercel, SiPostman, SiSocketdotio,
-  SiExpo
+  SiPostgresql, SiRedis, SiVercel, SiPostman, SiSocketdotio
 } from 'react-icons/si';
-import { TbBrandFramerMotion, TbHexagon3D, TbBrandReactNative } from 'react-icons/tb';
+import { TbBrandFramerMotion, TbHexagon3D } from 'react-icons/tb';
 
 // Dynamic icon mapping table
 const iconMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
@@ -28,8 +27,6 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; size?: n
   FaDocker,
   FaAws,
   SiVercel,
-  TbBrandReactNative,
-  SiExpo,
   FaHtml5,
   FaCss3Alt
 };
@@ -46,8 +43,6 @@ const fallbackSkills: Skill[] = [
   { name: 'HTML5', category: 'frontend', level: 95, iconName: 'FaHtml5' },
   { name: 'CSS3', category: 'frontend', level: 95, iconName: 'FaCss3Alt' },
   { name: 'React', category: 'frontend', level: 95, iconName: 'FaReact' },
-  { name: 'React Native', category: 'frontend', level: 90, iconName: 'TbBrandReactNative' },
-  { name: 'Expo', category: 'frontend', level: 85, iconName: 'SiExpo' },
   { name: 'TypeScript', category: 'frontend', level: 90, iconName: 'SiTypescript' },
   { name: 'Tailwind CSS', category: 'frontend', level: 95, iconName: 'SiTailwindcss' },
   { name: 'Framer Motion', category: 'frontend', level: 85, iconName: 'TbBrandFramerMotion' },
